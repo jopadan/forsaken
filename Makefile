@@ -10,8 +10,8 @@ CC=gcc
 ifeq ($(M32),1)
   FLAGS+= -m32
 endif
-FLAGS+= -std=gnu99 -pipe -fcommon
-CFLAGS=$(FLAGS) -Wall -Wextra
+FLAGS+= -std=gnu2x -pipe -fcommon
+CFLAGS=$(FLAGS) -Wall -Wextra -Wno-unused-result -Wno-unused-variable -Wno-unused
 LDFLAGS=$(FLAGS)
 
 # right now non debug build would probably crash anyway

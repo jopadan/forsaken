@@ -1,12 +1,8 @@
-*.sh
 *.o
 projectx*
 libs*
 unix*
 mingw*
-configs/*
-logs/*
-pilots/*
 savegame
 *.dll
 gmon.out
