@@ -63,8 +63,8 @@ endif
 # ProjectX Specific
 #
 
-# some systems use lua5.1
-LUA=lua5.1
+# some systems use lua5.4
+LUA=lua5.4
 MACOSX=$(shell uname -a | grep -qi darwin && echo 1 || echo 0)
 
 # which version of sdl do you want to ask pkgconfig for ?
@@ -100,7 +100,7 @@ ifeq ($(STATIC),1)
 endif
 LIBDIR=`pkg-config --variable=libdir $(LUA)`
 LIB+= `pkg-config $(PKG_CFG_OPTS) --libs $(LUA) libenet libpng zlib openal`
-LIB+= -L$(LIBDIR)/lua/5.1/ $(LIBDIR)/lua/5.1/mime/core.so $(LIBDIR)/lua/5.1/socket/core.so -lm
+LIB+= -L$(LIBDIR)/lua/5.4/ $(LIBDIR)/lua/5.4/mime/core.so $(LIBDIR)/lua/5.4/socket/core.so -lm
 ifeq ($(STATIC),1)
   LIB+= -Wl,-dy
 endif

@@ -809,7 +809,7 @@ void ortho_update ( GLuint current_program )
 		m._24 = -(top+bottom)/(top-bottom) + 2.0f;
 		m._34 = -(far+near)/(far-near);
 		m._44 = 1.0f;
-		glUniformMatrix4fv( u_ortho_matrix, 1, GL_TRUE, &m );
+		glUniformMatrix4fv( u_ortho_matrix, 1, GL_TRUE, (GLfloat*)&m );
 		CHECK_GL_ERRORS;
 		ortho_matrix_needs_update = false;
 	}
@@ -844,7 +844,7 @@ void mvp_update( GLuint current_program )
 	{
 		MatrixMultiply( &world_matrix, &view_matrix, &mvp );
 		MatrixMultiply( &mvp,          &proj_matrix, &mvp );
-		glUniformMatrix4fv( u_mvp, 1, GL_FALSE, &mvp );
+		glUniformMatrix4fv( u_mvp, 1, GL_FALSE, (GLfloat*)&mvp );
 		CHECK_GL_ERRORS;
 		mvp_needs_update = false;
 	}
@@ -941,17 +941,17 @@ void FSReleaseRenderObject(RENDEROBJECT *renderObject)
 	int i;
 	if (renderObject->lpVertexBuffer)
 	{
-		delete_buffer( &renderObject->lpVertexBuffer );
+		delete_buffer( (const GLuint*)&renderObject->lpVertexBuffer );
 		renderObject->lpVertexBuffer = NULL;
 	}
 	if (renderObject->lpNormalBuffer)
 	{
-		delete_buffer( &renderObject->lpNormalBuffer );
+		delete_buffer( (const GLuint*)&renderObject->lpNormalBuffer );
 		renderObject->lpNormalBuffer = NULL;
 	}
 	if (renderObject->lpIndexBuffer)
 	{
-		delete_buffer( &renderObject->lpIndexBuffer );
+		delete_buffer( (const GLuint*)&renderObject->lpIndexBuffer );
 		renderObject->lpIndexBuffer = NULL;
 	}
 	for (i = 0; i < renderObject->numTextureGroups; i++)
