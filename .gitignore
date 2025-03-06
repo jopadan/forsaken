@@ -8,3 +8,5 @@ savegame
 gmon.out
 configs/*.txt
 logs/*.txt
+pilots/*.txt
+data/
